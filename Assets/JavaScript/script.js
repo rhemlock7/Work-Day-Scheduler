@@ -10,15 +10,23 @@ $(function () {
   // useful when saving the description in local storage?
   
   // Grab all time blocks
+  let scheduledEvents = [];
   const timeBlock = $('.time-block')
   
   // When the button within time-block div is clicked, call the function.
   timeBlock.on("click", ".btn", function(){
+    // Accept an inpu
+    let buttonId = $(this).attr('id');
+    let input = $(this).siblings('.description').val().trim();
+    console.log(this)
+
     // Save user input in local storage
-    let input = $('textarea').val();
-    
-    // localStorage.setItem("input", input)
-    console.log("input = " + input);
+    localStorage.setItem(buttonId, input)
+    console.log(localStorage)
+    // scheduledEvents.push({buttonId, input})
+    // console.log(scheduledEvents);
+    localStorage.setItem('scheduledEvents', JSON.stringify(scheduledEvents))
+    console.log("registered to local storage")
 
   })
 
@@ -36,14 +44,18 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  
 
-
+  function displayEvents() {
+    let storedEvents = JSON.parse(localStorage.getItem("highScores"));
+    if (scheduledEvents != null) {
+      scheduledEvents = storedEvents;
+    }
+    console.log(scheduledEvents)
+  }
+  displayEvents();
 
   // COMPLETE: Add code to display the current date in the header of the page.
   const now = dayjs().format('dddd, MMMM D, YYYY');
   const dateParagraph = $("#currentDay");
   dateParagraph.text(now);
-
-
 });
