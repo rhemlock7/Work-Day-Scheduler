@@ -9,6 +9,14 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   
+  // Grab all time blocks
+  const timeBlock = $('.time-block')
+
+  // When the button within time-block div is clicked, call the function.
+  timeBlock.on("click", ".btn", function(){
+    console.log("clicked button")
+  })
+
 
 
   // TODO: Add code to apply the past, present, or future class to each time
