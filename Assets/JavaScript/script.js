@@ -11,10 +11,15 @@ $(function () {
   
   // Grab all time blocks
   const timeBlock = $('.time-block')
-
+  
   // When the button within time-block div is clicked, call the function.
   timeBlock.on("click", ".btn", function(){
-    console.log("clicked button")
+    // Save user input in local storage
+    let input = $('textarea').val();
+    
+    // localStorage.setItem("input", input)
+    console.log("input = " + input);
+
   })
 
 
