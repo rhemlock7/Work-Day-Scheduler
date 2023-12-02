@@ -8,13 +8,13 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  
+
   // Grab all time blocks
   let scheduledEvents = [];
   const timeBlock = $('.time-block')
-  
+
   // When the button within time-block div is clicked, call the function.
-  timeBlock.on("click", ".btn", function(){
+  timeBlock.on("click", ".btn", function () {
     // Accept an inpu
     let buttonId = $(this).attr('id');
     let input = $(this).siblings('.description').val().trim();
@@ -31,7 +31,21 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  
+  const currentMilTime = dayjs('2023-12-1T011:00').format('H');
+  const textAreaId = $('textarea').attr('id');
+
+  if (currentMilTime === textAreaId) {
+    timeBlock.addClass('present')
+    console.log("present working")
+  } else if (currentMilTime > textAreaId) {
+    timeBlock.addClass('past')
+    console.log("past working")
+  } else {
+    timeBlock.addClass('future')
+  }
+
+  console.log("text area id = " + textAreaId)
+  console.log("current time = " + currentMilTime)
 
 
 
@@ -39,13 +53,10 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
-  function displayEvents() {
-    // Change textContent of buttonId's parent to === localStorage values
-    for (i=9; i < 17; i++) {
-      $('#' + i).text(localStorage.getItem("button-" + i));
-    }
+  // Change textContent of buttonId's parent to === localStorage values
+  for (i = 9; i < 17; i++) {
+    $('#' + i).text(localStorage.getItem("button-" + i));
   }
-  displayEvents();
 
   // COMPLETE: Add code to display the current date in the header of the page.
   const now = dayjs().format('dddd, MMMM D, YYYY');
