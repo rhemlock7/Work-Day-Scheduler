@@ -18,16 +18,10 @@ $(function () {
     // Accept an inpu
     let buttonId = $(this).attr('id');
     let input = $(this).siblings('.description').val().trim();
-    console.log(this)
 
     // Save user input in local storage
     localStorage.setItem(buttonId, input)
-    console.log(localStorage)
-    // scheduledEvents.push({buttonId, input})
-    // console.log(scheduledEvents);
-    localStorage.setItem('scheduledEvents', JSON.stringify(scheduledEvents))
     console.log("registered to local storage")
-
   })
 
 
@@ -46,11 +40,10 @@ $(function () {
   // attribute of each time-block be used to do this?
 
   function displayEvents() {
-    let storedEvents = JSON.parse(localStorage.getItem("highScores"));
-    if (scheduledEvents != null) {
-      scheduledEvents = storedEvents;
+    // Change textContent of buttonId's parent to === localStorage values
+    for (i=9; i < 17; i++) {
+      $('#' + i).text(localStorage.getItem("button-" + i));
     }
-    console.log(scheduledEvents)
   }
   displayEvents();
 
