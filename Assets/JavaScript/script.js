@@ -40,9 +40,10 @@ $(function () {
   } else if (currentMilTime > textAreaId) {
     timeBlock.addClass('past')
     console.log("past working")
-  } else {
-    timeBlock.addClass('future')
-  }
+  } 
+  // else {
+  //   timeBlock.addClass('future')
+  // }
 
   console.log("text area id = " + textAreaId)
   console.log("current time = " + currentMilTime)
