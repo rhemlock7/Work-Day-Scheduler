@@ -10,7 +10,6 @@ $(function () {
   // useful when saving the description in local storage?
 
   // Grab all time blocks
-  let scheduledEvents = [];
   const timeBlock = $('.time-block')
 
   // When the button within time-block div is clicked, call the function.
@@ -31,23 +30,23 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  const currentMilTime = dayjs('2023-12-1T011:00').format('H');
-  const textAreaId = $('textarea').attr('id');
 
-  if (currentMilTime === textAreaId) {
-    timeBlock.addClass('present')
-    console.log("present working")
-  } else if (currentMilTime > textAreaId) {
-    timeBlock.addClass('past')
-    console.log("past working")
-  } 
-  // else {
-  //   timeBlock.addClass('future')
-  // }
+  let currentMilTime = dayjs('2023-12-02T10:34:00').format('H');
+  console.log("currentTime = " + currentMilTime)
 
-  console.log("text area id = " + textAreaId)
-  console.log("current time = " + currentMilTime)
-
+  for (i = 0; i < $('textarea').length; i++) {
+    let textAreaId = $('textarea')[i].id;
+    console.log(textAreaId)
+    if (currentMilTime > textAreaId) {
+      timeBlock.addClass('past')
+      console.log(textAreaId + "past working")
+    } else if (currentMilTime === textAreaId) {
+      timeBlock.addClass('present')
+      console.log(textAreaId + "present working")
+    } else if (currentMilTime > textAreaId) {
+      console.log(textAreaId + "future")
+    }
+  }
 
 
   // TODO: Add code to get any user input that was saved in localStorage and set
